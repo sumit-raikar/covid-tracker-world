@@ -1,0 +1,9 @@
+.quick-log-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "none none none quickLogArea";
+
+  .quickLog {
+    grid-area: quickLogArea;
+  }
+}

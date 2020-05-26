@@ -1,0 +1,19 @@
+.slide-left {
+  overflow: hidden;
+  p {
+    animation-name: slide-text;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes slide-text {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
