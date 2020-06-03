@@ -1,10 +1,10 @@
 import React from 'react';
-import LogMainCintroller from './containers/log/logMainContainer';
+import HomePageContainer from './containers/log/home-page/homePageContainer';
 
 function App() {
   return (
     <div>
-      <LogMainCintroller />
+      <HomePageContainer />
     </div>
   );
 }

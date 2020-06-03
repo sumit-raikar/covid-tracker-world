@@ -1,5 +1,5 @@
 import React from 'react';
-import UseWindowSize from '../../utils/useWindowSize';
+import UseWindowSize from '../../../utils/useWindowSize';
 import UpdateLogContainer from './updateLogContainer';
 import QuickLogContainer from './quickLogContainer';
 

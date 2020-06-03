@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import actions from '../../actions';
-import '../../scss/updateLog.scss';
-import SlideText from '../../components/slideText';
+import actions from '../../../actions';
+import './updateLog.scss';
+import SlideText from '../../../components/slideText';
 
 const UpdateLogContainer = () => {
     const [textLogToDisplay, setTextLogToDisplay] = useState();
