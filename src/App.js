@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePageContainer from './containers/log/home-page/homePageContainer';
+import HomePageContainer from './containers/home-page/homePageContainer';
 
 function App() {
   return (

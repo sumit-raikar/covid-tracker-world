@@ -1,7 +1,10 @@
-import updateLogActions from './updateLog';
-
+import updateLogActions from './updateLogAction';
+import getStateCovidCountActions from './indiaCovidCountAction';
+import worldStatasticsAction from './worldStatasticsAction';
 const actions = {
-    updateLogActions
+    updateLogActions,
+    getStateCovidCountActions,
+    worldStatasticsAction
 }
 
 export default actions;

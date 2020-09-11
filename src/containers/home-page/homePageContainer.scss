@@ -1,0 +1,10 @@
+.home-page-container {
+    .icc-table-top-3-state{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+    }
+    .icc-table{
+      padding: 0 2rem;
+    }
+}

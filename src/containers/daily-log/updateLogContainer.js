@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import actions from '../../../actions';
+import actions from '../../actions';
 import './updateLog.scss';
-import SlideText from '../../../components/slideText';
+import SlideText from '../../components/slideText';
 
 const UpdateLogContainer = () => {
     const [textLogToDisplay, setTextLogToDisplay] = useState();
     const updateLogs = useSelector(state => state.updateLogReducer.updateLogs);
-
     const dispatch = useDispatch();
 
+    // This Efect is used to fetch daily indian logs. This function runs only once
     useEffect(() => {
-        console.log(updateLogs);
         if (updateLogs.length === 0) {
             dispatch(actions.updateLogActions.getCovidUpdateLog());
         }
     }, []);
 
+    // This runs whenever updateLogs.length changes.
     useEffect(() => {
         let isCancelled = false;
         for (let i = 0; i < updateLogs.length; i += 1) {
@@ -40,10 +40,10 @@ const UpdateLogContainer = () => {
 
                 // seconds as 2 digits (ss)
                 const seconds = ("0" + date_ob.getSeconds()).slice(-2);
-                if (!isCancelled) {
+                if (!isCancelled) { // It the component is unmounted the update process must be stoped, here when component unmounts isCancelled is sset to true and this logic stops updation of state.  
                     setTextLogToDisplay(updateLogs[i].update.concat(' DateTime ', year, '-', month, '-', date, ' ', hours, ':', minutes, ':', seconds));
                 }
-            }, 10000 * i)
+            }, 3000 * i)
         }
         return () => {
             isCancelled = true;
@@ -53,6 +53,7 @@ const UpdateLogContainer = () => {
     return (
         <div className="update-log-container">
             <SlideText textToShow={textLogToDisplay} />
+            {updateLogs.length === 0 && <div>Loading...</div>}
         </div>
     );
 }

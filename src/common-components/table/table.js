@@ -3,27 +3,14 @@ import TableHeading from './tableHeader';
 import './table.scss';
 import TableBody from './tableBody';
 
-const headings = [
-    { label: 'Name', heading: 'name' },
-    { label: 'Roll No', heading: 'rollno' },
-]
-
-const data = [
-    { name: 'Sumeeth', rollno: 54 },
-    { name: 'Rahul', rollno: 53 },
-    { name: 'Amit', rollno: 55 },
-    { name: 'BB', rollno: 58 }
-]
-
-const Table = () => {
+const Table = (props) => {
     useEffect(() => {
 
     }, []);
     return (
         <table>
-            <TableHeading headings={headings} />
-            {/* <tbody>{tbodyMarkup}</tbody> */}
-            <TableBody headings={headings} data={data} />
+            <TableHeading headings={props.headings} action={props.action} />
+            <TableBody headings={props.headings} data={props.data} subHeadings={props.subHeadings} subAction={props.subAction}/>
         </table>
     );
 }

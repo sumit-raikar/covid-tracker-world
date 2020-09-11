@@ -1,9 +1,9 @@
 import React from 'react';
-import UseWindowSize from '../../../utils/useWindowSize';
+import UseWindowSize from '../../utils/useWindowSize';
 import UpdateLogContainer from './updateLogContainer';
 import QuickLogContainer from './quickLogContainer';
 
-const LogMainCintroller = () => {
+const LogMainController = () => {
     const size = UseWindowSize();
     return (
         <div>
@@ -13,4 +13,4 @@ const LogMainCintroller = () => {
     );
 }
 
-export default LogMainCintroller;
+export default LogMainController;

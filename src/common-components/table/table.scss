@@ -1,6 +1,20 @@
 table,
 th,
 td {
-  border: 1px solid black;
+  // border: 1px solid black;
+  text-align: left;
   border-collapse: collapse;
+  padding: 0 .5rem;
+  border-bottom: 1px solid black;
+}
+
+th{
+  .sort-order{
+    float: right;
+  }
+}
+
+.table-body-cell-container{
+  display: grid;
+  grid-template-columns: 1fr .4fr;
 }
