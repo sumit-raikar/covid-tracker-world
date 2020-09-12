@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import App from './App';
 import World from './containers/world';
 import Header from './components/Header';
@@ -12,11 +12,12 @@ import './app.scss';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router basename='/covid-tracker-world'>
         <div>
           <Header />
           <div>THIS IS NOT OFFICIAL WEBSITE</div>
-          <Route exact path='/' component={App}></Route>
+          <Redirect from='/' to="/homepage" />
+          <Route path='/homepage' component={App}></Route>
           <Route path='/world' component={World}></Route>
           <Route path='/state/:stateVal' component={() => <div>fgh</div>}></Route>
         </div>
