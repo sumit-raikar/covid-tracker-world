@@ -36,15 +36,15 @@ const TableBody = ({ data, headings, subHeadings, onlinkClick, subAction }) => {
                     const deltaValue = `delta${tableHeadData.ref}`;
                     const oneMValue = `1m${tableHeadData.ref}`;
                     return <td key={_row.key + index.toString()}>
-                        <div className='table-body-cell-container'>
+                        <div className={tableHeadData.route ? `table-body-cell-container table-body-right-content` : 'table-body-right-content'}>
                             <div>
                                 <div>{_row[deltaValue]}</div>
                                 <div>{_row[tableHeadData.ref]}</div>
                                 {_row[oneMValue] && <div>1M-POP, {_row[oneMValue]}</div>}
                             </div>
-                            <div>
-                                <div onClick={(e) => { e.stopPropagation() }}>{tableHeadData.route && <Link to={tableHeadData.route ? _row['routeLink'] + `/${_row.state}` : ''}>Open new</Link>}</div>
-                            </div>
+                            {tableHeadData.route && <div>
+                                <div onClick={(e) => { e.stopPropagation() }}>{tableHeadData.route && <Link to={tableHeadData.route ? _row['routeLink'] + `/${_row.statecode}` : ''}>Open new</Link>}</div>
+                            </div>}
                         </div>
                     </td>
                 })}
@@ -54,7 +54,7 @@ const TableBody = ({ data, headings, subHeadings, onlinkClick, subAction }) => {
         if (expandedRows.includes(_row.statecode)) {
             itemRows.push(
                 <tr key={"row-expanded-" + _row.statecode}>
-                    <td colSpan={headings.length}>
+                    <td colSpan={headings.length} className='table-expand-cell'>
                         <Table headings={subHeadings} data={_row.districtWiseData} action={subAction} />
                     </td>
                 </tr>
@@ -66,9 +66,9 @@ const TableBody = ({ data, headings, subHeadings, onlinkClick, subAction }) => {
     }
 
     return (
-        <thead>
+        <tbody>
             {returnTableBody()}
-        </thead>
+        </tbody>
     );
 }
 

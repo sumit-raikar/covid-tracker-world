@@ -1,0 +1,26 @@
+.state-total-count{
+    .container{
+        display:grid;
+        grid-template-rows: 2fr 1fr;
+    }
+    .last-update{
+        float: right;
+    }
+    .status-grid-container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+    .status-grid{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+    }
+    .label-grid{
+        display: grid;
+        grid-template-rows: repeat(3,1fr);
+        justify-content: center;
+    }
+    .label-right{
+        display: grid;
+        justify-content: right;
+    }
+}

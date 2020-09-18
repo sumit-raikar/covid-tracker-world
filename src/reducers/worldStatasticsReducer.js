@@ -26,7 +26,7 @@ const transformStats = (stats) => {
             deltadeath: data.deaths.new,
             '1mactive': data.cases['1M_pop'],
             '1mdeath': data.deaths['1M_pop'],
-            '1mpopulation': data.tests['1M_pop'],
+            '1mtests': data.tests['1M_pop'],
             key: randomId(2000, 3000)
         }
     })

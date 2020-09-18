@@ -5,7 +5,7 @@ td {
   text-align: left;
   border-collapse: collapse;
   padding: 0 .5rem;
-  border-bottom: 1px solid black;
+  // border-bottom: 0.1rem solid lightgray;
 }
 
 th{
@@ -17,4 +17,23 @@ th{
 .table-body-cell-container{
   display: grid;
   grid-template-columns: 1fr .4fr;
+}
+
+thead{
+  border-bottom: .15rem solid black;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(odd) {background-color: white;}
+th:nth-child(n) {border-right: .1rem solid black;}
+th:last-child {border-right: none}
+.table-expand-cell{
+  background-color: white;
+}
+
+td:nth-child(n+2){
+  text-align: right;
+}
+tr{
+  // line-height: 1rem;
 }

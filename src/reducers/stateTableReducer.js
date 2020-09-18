@@ -1,14 +1,13 @@
-import { stateCovidCount } from '../constants';
-import compareValues from '../common-components/compare-values';
+import { statePageVariable } from '../constants';
+
+const initialState = {
+    isLoading: false,
+    stateTableData: [],
+    error: ''
+}
 
 const randomId = (min, max) => {
     return Math.random() * (max - min) + min;
-}
-const initialState = {
-    isLoading: false,
-    stateWiseCovidCount: [],
-    statewiseDistrictData: [],
-    error: ''
 }
 
 const constructStateWiseData = (districtData) => {
@@ -70,75 +69,32 @@ const transformIndianCovidCount = (payload, extraData) => {
         }
     });
     covidStateDetails.push(tempToalIndiaCovidCount);
+    console.log(covidStateDetails);
     return covidStateDetails;
 }
 
-const sortCovidCount = (indiaCovidCount, payload) => {
-    const { data, sortOrder } = payload;
-    const sortedCovidCount = JSON.parse(JSON.stringify(indiaCovidCount));
-    return sortedCovidCount.sort(compareValues(data, sortOrder));
-}
-
-const sortDistrictCovidCount = (indiaCovidCount, payload) => {
-    const { data, sortOrder } = payload;
-    console.log(data, sortOrder);
-    const sortedCovidCount = JSON.parse(JSON.stringify(indiaCovidCount));
-    const newSortedData = sortedCovidCount.map(stateData => {
-        console.log(stateData);
-        if (stateData.state !== 'Total' && stateData.statecode !== 'TT') {
-            return {
-                ...stateData,
-                districtWiseData: stateData.districtWiseData.sort(compareValues(data, sortOrder))
-            }
-        }
-        return {
-            ...stateData
-        }
-    });
-    return newSortedData;
-}
-
-const indiaCovidCountReducer = (state = initialState, action) => {
+const stateTableReducer = (state = initialState, action) => {
     switch (action.type) {
-        case stateCovidCount.request: {
+        case statePageVariable.request: {
             return {
                 ...state,
                 isLoading: true,
                 error: ''
             }
         }
-        case stateCovidCount.success: {
+        case statePageVariable.success: {
             return {
                 ...state,
                 isLoading: false,
-                stateWiseCovidCount: transformIndianCovidCount(action.payload, action.extraData),
-                statewiseDistrictData: action.extraData
+                stateTableData: transformIndianCovidCount(action.payload, action.extraData),
             }
         }
-        case stateCovidCount.failure: {
+        case statePageVariable.failure: {
             return {
                 ...state,
                 isLoading: false,
-                stateWiseCovidCount: [],
+                stateTableData: [],
                 error: action.payload
-            }
-        }
-        case stateCovidCount.sortSuccess: {
-            const tempSortCovidCount = sortCovidCount(state.stateWiseCovidCount, action.payload);
-            return {
-                ...state,
-                isLoading: false,
-                stateWiseCovidCount: [...tempSortCovidCount],
-                error: ''
-            }
-        }
-        case stateCovidCount.sortDistSuccess: {
-            const tempSortCovidCount = sortDistrictCovidCount(state.stateWiseCovidCount, action.payload);
-            return {
-                ...state,
-                isLoading: false,
-                stateWiseCovidCount: [...tempSortCovidCount],
-                error: ''
             }
         }
         default: {
@@ -147,4 +103,4 @@ const indiaCovidCountReducer = (state = initialState, action) => {
     }
 }
 
-export default indiaCovidCountReducer;
+export default stateTableReducer;

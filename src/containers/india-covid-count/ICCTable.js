@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../../actions';
 import Table from '../../common-components/table/table';
+
 const tempHeading = [
     { ref: 'state', label: 'State', route: true, sorting: true },
     { ref: 'confirmed', label: 'Confirmed', sorting: true },

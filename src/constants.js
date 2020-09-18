@@ -21,3 +21,9 @@ export const worldStats = {
     sortFailure: 'SORT_STATASTICS_FAILURE',
     searchSuccess: 'SEARCH_STATASTICS_SUCCESS',
 }
+
+export const statePageVariable = {
+    request: 'STATE_DATA_REQUEST',
+    success: 'STATE_DATA_SUCCESS',
+    failure: 'STATE_DATA_FAILURE'
+};

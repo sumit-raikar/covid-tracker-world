@@ -3,4 +3,21 @@
     grid-template-columns: 1fr 1fr 10fr;
     grid-template-rows: 3rem;
     justify-content: center;
+    background-color: mintcream;
+    div {
+        padding: 1rem;
+    }
+    a {
+//   background-color: red;
+//   color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+a:active{
+    color: black;
+}
+a:visited{
+  color: black;
+}
 }
