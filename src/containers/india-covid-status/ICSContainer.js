@@ -11,37 +11,39 @@ const IndiaCovidStatus = () => {
 
     return (
         indiaCovidStatus === null ? (<div>Loading total india covid status...</div>) :
-            (<div className="india-covid-status">
-                <div>
-                    <div>
-                        Confirmed
-                </div>
-                    <div>
-                        {indiaCovidStatus[0].confirmed}
+            (<div className="india-covid-status-container">
+                <div className='india-covid-status'>
+                    <div className='status-grid-container'>
+                        <div className='status-label'>
+                            Confirmed
+                        </div>
+                        <div className='status-center'>
+                            {indiaCovidStatus[0].confirmed}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div>
-                        Active
-                </div>
-                    <div>
-                        {indiaCovidStatus[0].active}
+                    <div className='status-grid-container'>
+                        <div className='status-label'>
+                            Active
+                        </div>
+                        <div className='status-center'>
+                            {indiaCovidStatus[0].active}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div>
-                        Recovered
-                </div>
-                    <div>
-                        {indiaCovidStatus[0].recovered}
+                    <div className='status-grid-container'>
+                        <div className='status-label'>
+                            Recovered
+                        </div>
+                        <div className='status-center'>
+                            {indiaCovidStatus[0].recovered}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div>
-                        Deseased
-                </div>
-                    <div>
-                        {indiaCovidStatus[0].deceased}
+                    <div className='status-grid-container'>
+                        <div className='status-label'>
+                            Deseased
+                        </div>
+                        <div className='status-center'>
+                            {indiaCovidStatus[0].deceased}
+                        </div>
                     </div>
                 </div>
             </div>)

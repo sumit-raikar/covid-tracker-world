@@ -25,5 +25,8 @@ export const worldStats = {
 export const statePageVariable = {
     request: 'STATE_DATA_REQUEST',
     success: 'STATE_DATA_SUCCESS',
-    failure: 'STATE_DATA_FAILURE'
+    failure: 'STATE_DATA_FAILURE',
+    timeseriesRequest: 'TIME_SERIES_DATA_REQUEST',
+    timeseriesSuccess: 'TIME_SERIES_DATA_SUCCESS',
+    timeseriesFailure: 'TIME_SERIES_DATA_FAILURE'
 };

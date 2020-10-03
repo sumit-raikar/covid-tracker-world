@@ -112,7 +112,6 @@ function Top3State() {
     const [tableHeadings, setTableHeadings] = useState(newsHeadings);
     const indiaCovidTableData = useSelector(state => state.indiaCovidCountReducer.stateWiseCovidCount);
     const isLoading = useSelector(state => state.indiaCovidCountReducer.isLoading);
-    console.log(isLoading);
     useEffect(() => {
         let newTableData = [];
         newTableData = tableHeadings.map((heading) => {

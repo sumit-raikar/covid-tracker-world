@@ -9,9 +9,11 @@ import action from '../../actions';
 
 const IndiaStateCovidstatus = () => {
     const [evalStateTotalCount, setEvalStateTotalCount] = useState({})
-    let { stateVal } = useParams();
+    const { stateVal } = useParams();
     const indiaCovidTableData = useSelector(state => state.stateTableReducer.stateTableData);
     const isLoading = useSelector(state => state.stateTableReducer.isLoading);
+    const isLoadingTimeseriesData = useSelector(state => state.stateTableReducer.isLoadingTimeSeries);
+    const stateTimeSeriesData = useSelector(state => state.stateTableReducer.stateTimeseriesData);
     const dispatch = useDispatch();
     useEffect(() => {
         if (indiaCovidTableData.length === 0) {
@@ -25,18 +27,22 @@ const IndiaStateCovidstatus = () => {
         }
 
     }, [indiaCovidTableData.length]);
+    useEffect(() => {
+        dispatch(action.stateDataActions.getDistrictTimeseries(stateVal));
+    }, []);
     return (
         <div>
-            {isLoading ? (<div>Loading State Data...</div>) : (<div><StateTotalCount stateData={evalStateTotalCount} />
-                <div>
-                    <div>
-                        <StateTable />
+            {isLoading ? (<div>Loading State Data...</div>) :
+                (
+                    <div><StateTotalCount stateData={evalStateTotalCount} />
+                        <div>
+                            {!isLoadingTimeseriesData && <StateTable stateTimeSeriesData={stateTimeSeriesData} />}
+                        </div>
+                        <div>
+                            <DistrictGraph />
+                        </div>
                     </div>
-                    <div>
-                        <DistrictGraph />
-                    </div>
-                </div>
-            </div>)
+                )
             }
         </div>
     );

@@ -15,5 +15,18 @@ const getDistrictCovidData = () => {
     }
 }
 
+const getDistrictTimeseries = (district) => {
+    return async (dispatch) => {
+        dispatch({ type: statePageVariable.timeseriesRequest });
+        try {
+            const response = await fetch(`https://api.covid19india.org/v4/min/timeseries-${district}.min.json`);
+            const res = await response.json();
+            dispatch({ type: statePageVariable.timeseriesSuccess, payload: res, statecode: district });
+        } catch (e) {
+            dispatch({ type: statePageVariable.timeseriesFailure, payload: e });
+        }
+    }
+}
 
-export default { getDistrictCovidData };
+
+export default { getDistrictCovidData, getDistrictTimeseries };

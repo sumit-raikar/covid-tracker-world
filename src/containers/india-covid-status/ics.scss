@@ -1,6 +1,21 @@
+.india-covid-status-container {
+  display: grid;
+  grid-template-columns: .5fr;
+  margin: 2rem;
+}
 .india-covid-status {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 4rem;
-  justify-items: center;
+  .status-grid-container{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: .5rem;
+  }
+  .status-label{
+    font-weight: 600;
+  }
+  .status-center{
+    float: right;
+  }
 }

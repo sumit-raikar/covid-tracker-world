@@ -3,7 +3,9 @@ import { statePageVariable } from '../constants';
 const initialState = {
     isLoading: false,
     stateTableData: [],
-    error: ''
+    error: '',
+    isLoadingTimeSeries: false,
+    stateTimeseriesData: { stateDailyCases: [], districtDailyCases: [] }
 }
 
 const randomId = (min, max) => {
@@ -73,6 +75,49 @@ const transformIndianCovidCount = (payload, extraData) => {
     return covidStateDetails;
 }
 
+const transformTimeSeriesData = (timeseriesData, statecode) => {
+    const deepCopyTimeseriesData = JSON.parse(JSON.stringify(timeseriesData));
+    // --------------
+    const tempStateDailyChanges = deepCopyTimeseriesData[statecode]['dates'];
+    const stateDailyChanges = [];
+    for (const property in tempStateDailyChanges) {
+        stateDailyChanges.push(
+            {
+                date: property,
+                confirmed: tempStateDailyChanges[property].hasOwnProperty('delta') ? tempStateDailyChanges[property]['delta']['confirmed'] || 0 : 0,
+                recovered: tempStateDailyChanges[property].hasOwnProperty('delta') ? tempStateDailyChanges[property]['delta']['recovered'] || 0 : 0,
+                deceased: tempStateDailyChanges[property].hasOwnProperty('delta') ? tempStateDailyChanges[property]['delta']['deceased'] || 0 : 0,
+                tested: tempStateDailyChanges[property].hasOwnProperty('delta') ? tempStateDailyChanges[property]['delta']['tested'] || 0 : 0,
+            }
+        )
+    }
+    // --------------
+    const tempDistrictDailyChanges = deepCopyTimeseriesData[statecode]['districts'];
+    const districtDailyChanges = [];
+    for (const property in tempDistrictDailyChanges) {
+        const district = tempDistrictDailyChanges[property]['dates'];
+        const districtDaily = [];
+        for (const districtDate in district) {
+            districtDaily.push(
+                {
+                    date: districtDate,
+                    confirmed: district[districtDate].hasOwnProperty('delta') ? district[districtDate]['delta']['confirmed'] || 0 : 0,
+                    recovered: district[districtDate].hasOwnProperty('delta') ? district[districtDate]['delta']['recovered'] || 0 : 0,
+                    deceased: district[districtDate].hasOwnProperty('delta') ? district[districtDate]['delta']['deceased'] || 0 : 0,
+                    tested: district[districtDate].hasOwnProperty('delta') ? district[districtDate]['delta']['tested'] || 0 : 0,
+                }
+            )
+        }
+        districtDailyChanges.push(
+            {
+                name: property,
+                dailyChanges: districtDaily
+            }
+        );
+    }
+    return { stateDailyCases: stateDailyChanges, districtDailyCases: districtDailyChanges };
+}
+
 const stateTableReducer = (state = initialState, action) => {
     switch (action.type) {
         case statePageVariable.request: {
@@ -95,6 +140,28 @@ const stateTableReducer = (state = initialState, action) => {
                 isLoading: false,
                 stateTableData: [],
                 error: action.payload
+            }
+        }
+        case statePageVariable.timeseriesRequest: {
+            return {
+                ...state,
+                isLoadingTimeSeries: true,
+                errorTimeSeries: ''
+            }
+        }
+        case statePageVariable.timeseriesSuccess: {
+            return {
+                ...state,
+                isLoadingTimeSeries: false,
+                stateTimeseriesData: transformTimeSeriesData(action.payload, action.statecode),
+            }
+        }
+        case statePageVariable.timeseriesFailure: {
+            return {
+                ...state,
+                isLoadingTimeSeries: false,
+                stateTimeseriesData: {},
+                errorTimeSeries: action.payload
             }
         }
         default: {

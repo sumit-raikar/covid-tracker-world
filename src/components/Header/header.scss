@@ -1,23 +1,23 @@
 .header-container{
     display: grid;
     grid-template-columns: 1fr 1fr 10fr;
-    grid-template-rows: 3rem;
+    grid-template-rows: 4rem;
     justify-content: center;
-    background-color: mintcream;
+    background-color: black;
     div {
+        margin-left: 1rem;
         padding: 1rem;
+        padding-top: 1.5rem;
     }
     a {
-//   background-color: red;
-//   color: white;
-  padding: 1em 1.5em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
+          text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+      }
 a:active{
-    color: black;
+    color: white;
 }
 a:visited{
-  color: black;
+  color: white;
 }
 }

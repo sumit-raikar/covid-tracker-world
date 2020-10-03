@@ -3,28 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import WorldData from '../../components/world-data';
 import actions from '../../actions';
-import { Doughnut } from 'react-chartjs-2';
 
-const data = {
-    labels: [
-        'Red',
-        'Green',
-        'Yellow'
-    ],
-    datasets: [{
-        data: [300, 50, 100],
-        backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56'
-        ],
-        hoverBackgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56'
-        ]
-    }]
-};
+import './world.scss';
 
 const tableHeadings = [
     { ref: 'country', label: 'Country', sorting: true },
@@ -53,16 +33,15 @@ function World() {
         }
     }, []);
     return (
-        <div>
+        <div className='world-container'>
             {
                 isLoading ?
                     (<div>Loading world data...</div>) :
-                    (<div>
-                        <div>
-                            search any country: <input value={searchText} onChange={(e) => { setSearchText(e.target.value); dispatch(actions.worldStatasticsAction.searchStatastics(e.target.value)) }} />
+                    (<div className='basic-layout'>
+                        <div className='search-container'>
+                            <span className='search-label'>search any country:</span> <input className='search-field' value={searchText} placeholder='Search for countries' onChange={(e) => { setSearchText(e.target.value); dispatch(actions.worldStatasticsAction.searchStatastics(e.target.value)) }} />
                         </div>
                         <WorldData headings={tableHeadings} data={worldStats} action={boundWorldActionCreator} />
-                        <Doughnut data={data} />
                     </div>)
             }
         </div>
