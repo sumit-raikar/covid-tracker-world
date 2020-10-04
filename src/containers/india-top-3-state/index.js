@@ -71,7 +71,7 @@ function getTop3DistrictData(indiaCovidTableData, criteria) {
                 })
             }
         });
-        console.log(stateDataCollected);
+        // console.log(stateDataCollected);
         stateDataCollected.sort(compareValues('cases', 'desc'));
         return stateDataCollected.slice(0, 3);
     } else if (criteria === 'totalRecovered') {
@@ -86,7 +86,7 @@ function getTop3DistrictData(indiaCovidTableData, criteria) {
                 })
             }
         });
-        console.log(stateDataCollected);
+        // console.log(stateDataCollected);
         stateDataCollected.sort(compareValues('totalRecovered', 'desc'));
         return stateDataCollected.slice(0, 3);
     } else if (criteria === 'recoveredToday') {
@@ -101,7 +101,7 @@ function getTop3DistrictData(indiaCovidTableData, criteria) {
                 })
             }
         });
-        console.log(stateDataCollected);
+        // console.log(stateDataCollected);
         stateDataCollected.sort(compareValues('recoveredToday', 'desc'));
         return stateDataCollected.slice(0, 3);
     }

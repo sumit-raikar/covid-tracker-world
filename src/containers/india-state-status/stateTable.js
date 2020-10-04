@@ -10,12 +10,13 @@ const StateTable = ({ stateTimeSeriesData }) => {
                 graphTypes.map(graph => {
                     return <div key={graph.type}>
                         <BarCharts
-                            width={400}
+                            width='100%'
                             height={250}
                             data={stateTimeSeriesData.stateDailyCases}
                             XDataKey='date'
                             barDataKey={graph.type}
                             color={graph.color}
+                            responsive
                         /></div>
                 })
             }

@@ -1,4 +1,5 @@
 import { statePageVariable } from '../constants';
+import convertNumberToINRFormat from '../common-components/currency-converter';
 
 const initialState = {
     isLoading: false,
@@ -17,13 +18,13 @@ const constructStateWiseData = (districtData) => {
     for (let newDistrict in districtData) {
         tempDistrictData.push({
             district: newDistrict,
-            confirmed: districtData[newDistrict].confirmed,
-            active: districtData[newDistrict].active,
-            recovered: districtData[newDistrict].recovered,
-            deceased: districtData[newDistrict].deceased,
-            deltaconfirmed: districtData[newDistrict]['delta'].confirmed,
-            deltadeceased: districtData[newDistrict]['delta'].deceased,
-            deltarecovered: districtData[newDistrict]['delta'].recovered,
+            confirmed: convertNumberToINRFormat(districtData[newDistrict].confirmed),
+            active: convertNumberToINRFormat(districtData[newDistrict].active),
+            recovered: convertNumberToINRFormat(districtData[newDistrict].recovered),
+            deceased: convertNumberToINRFormat(districtData[newDistrict].deceased),
+            deltaconfirmed: convertNumberToINRFormat(districtData[newDistrict]['delta'].confirmed),
+            deltadeceased: convertNumberToINRFormat(districtData[newDistrict]['delta'].deceased),
+            deltarecovered: convertNumberToINRFormat(districtData[newDistrict]['delta'].recovered),
             key: randomId(1, 100)
         });
     }
@@ -39,13 +40,13 @@ const transformIndianCovidCount = (payload, extraData) => {
         if (state.state !== 'Total' && state.statecode !== 'TT') {
             const distWise = extraData[state.state]
             covidStateDetails.push({
-                confirmed: state.confirmed,
-                active: state.active,
-                recovered: state.recovered,
-                deceased: state.deaths,
-                deltaconfirmed: state.deltaconfirmed,
-                deltadeceased: state.deltadeaths,
-                deltarecovered: state.deltarecovered,
+                confirmed: convertNumberToINRFormat(state.confirmed),
+                active: convertNumberToINRFormat(state.active),
+                recovered: convertNumberToINRFormat(state.recovered),
+                deceased: convertNumberToINRFormat(state.deaths),
+                deltaconfirmed: convertNumberToINRFormat(state.deltaconfirmed),
+                deltadeceased: convertNumberToINRFormat(state.deltadeaths),
+                deltarecovered: convertNumberToINRFormat(state.deltarecovered),
                 state: state.state,
                 statecode: state.statecode,
                 lastupdatedtime: state.lastupdatedtime,
@@ -56,13 +57,13 @@ const transformIndianCovidCount = (payload, extraData) => {
             })
         } else {
             tempToalIndiaCovidCount = {
-                confirmed: state.confirmed,
-                active: state.active,
-                recovered: state.recovered,
-                deceased: state.deaths,
-                deltaconfirmed: state.deltaconfirmed,
-                deltadeceased: state.deltadeaths,
-                deltarecovered: state.deltarecovered,
+                confirmed: convertNumberToINRFormat(state.confirmed),
+                active: convertNumberToINRFormat(state.active),
+                recovered: convertNumberToINRFormat(state.recovered),
+                deceased: convertNumberToINRFormat(state.deaths),
+                deltaconfirmed: convertNumberToINRFormat(state.deltaconfirmed),
+                deltadeceased: convertNumberToINRFormat(state.deltadeaths),
+                deltarecovered: convertNumberToINRFormat(state.deltarecovered),
                 state: state.state,
                 statecode: state.statecode,
                 lastupdatedtime: state.lastupdatedtime,
@@ -71,7 +72,6 @@ const transformIndianCovidCount = (payload, extraData) => {
         }
     });
     covidStateDetails.push(tempToalIndiaCovidCount);
-    console.log(covidStateDetails);
     return covidStateDetails;
 }
 

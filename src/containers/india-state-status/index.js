@@ -25,7 +25,6 @@ const IndiaStateCovidstatus = () => {
                 setEvalStateTotalCount(stateCode[0]);
             }
         }
-
     }, [indiaCovidTableData.length]);
     useEffect(() => {
         dispatch(action.stateDataActions.getDistrictTimeseries(stateVal));

@@ -1,6 +1,7 @@
 import { worldStats } from '../constants';
 import randomId from '../common-components/random-number';
 import compareValues from '../common-components/compare-values';
+import convertNumberToINRFormat from '../common-components/currency-converter';
 
 const initialState = {
     isLoading: false,
@@ -10,23 +11,23 @@ const initialState = {
 }
 
 const transformStats = (stats) => {
-    console.log(stats);
+    // console.log(stats);
     let transformedWorldData = [];
     transformedWorldData = stats.response.map(data => {
         return {
             country: data.country,
-            total: data.cases.total,
-            active: data.cases.active,
-            recovered: data.cases.recovered,
-            death: data.deaths.total,
-            tests: data.tests.total,
-            population: data.population,
+            total: convertNumberToINRFormat(data.cases.total),
+            active: convertNumberToINRFormat(data.cases.active),
+            recovered: convertNumberToINRFormat(data.cases.recovered),
+            death: convertNumberToINRFormat(data.deaths.total),
+            tests: convertNumberToINRFormat(data.tests.total),
+            population: convertNumberToINRFormat(data.population),
             lastUpdated: data.time,
-            deltaactive: data.cases.new,
-            deltadeath: data.deaths.new,
-            '1mactive': data.cases['1M_pop'],
-            '1mdeath': data.deaths['1M_pop'],
-            '1mtests': data.tests['1M_pop'],
+            deltaactive: convertNumberToINRFormat(data.cases.new),
+            deltadeath: convertNumberToINRFormat(data.deaths.new),
+            '1mactive': convertNumberToINRFormat(data.cases['1M_pop']),
+            '1mdeath': convertNumberToINRFormat(data.deaths['1M_pop']),
+            '1mtests': convertNumberToINRFormat(data.tests['1M_pop']),
             key: randomId(2000, 3000)
         }
     })

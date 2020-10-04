@@ -11,9 +11,9 @@ const TableHeading = ({ headings, action }) => {
     }, [headings.length]);
 
     const onHeadingClick = (heading, headingIndex) => {
-        console.log(heading, sortState[headingIndex]);
+        // console.log(heading, sortState[headingIndex]);
         // Change asc to desc in setstate
-        console.log(sortState);
+        // console.log(sortState);
         let newSortState = [];
         sortState.forEach((data, index) => {
             if (index === headingIndex) {

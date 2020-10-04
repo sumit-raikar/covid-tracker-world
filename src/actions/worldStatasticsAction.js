@@ -20,7 +20,7 @@ const getAllCountryStatastics = () => {
 }
 
 const sortStatastics = (data, sortOrder) => {
-    console.log(data, sortOrder);
+    // console.log(data, sortOrder);
     return {
         type: worldStats.sortSuccess,
         payload: { data, sortOrder }
@@ -28,7 +28,7 @@ const sortStatastics = (data, sortOrder) => {
 }
 
 const searchStatastics = (searchText) => {
-    console.log(searchText);
+    // console.log(searchText);
     return {
         type: worldStats.searchSuccess,
         payload: searchText

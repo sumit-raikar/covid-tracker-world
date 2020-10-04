@@ -27,23 +27,23 @@ function ICCTable() {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log('get india covid count');
+        // console.log('get india covid count');
         if (indiaCovidTableData.length === 0) {
             dispatch(actions.getStateCovidCountActions.getStateCovidCount())
         }
     }, []);
 
     useEffect(() => {
-        console.log('get india covid count');
+        // console.log('get india covid count');
     }, []);
     if (boundCovidCountActionCreator === null) {
         boundCovidCountActionCreator = bindActionCreators(actions.getStateCovidCountActions.sortCovidCount, dispatch);
     }
-    console.log(boundCovidCountActionCreator);
+    // console.log(boundCovidCountActionCreator);
     if (boundCovidCountSubActionCreator === null) {
         boundCovidCountSubActionCreator = bindActionCreators(actions.getStateCovidCountActions.sortDistrictCovidCount, dispatch);
     }
-    console.log(boundCovidCountSubActionCreator);
+    // console.log(boundCovidCountSubActionCreator);
     return (
         <div>
             <Table headings={tempHeading} data={indiaCovidTableData} subHeadings={subHeadings} action={boundCovidCountActionCreator} subAction={boundCovidCountSubActionCreator} />
